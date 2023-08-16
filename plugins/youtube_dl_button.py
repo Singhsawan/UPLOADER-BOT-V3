@@ -1,30 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# (c) Shrimadhav U K | Modified by LISA-KOREA | @LISA_FAN_LK
+
+# the logging things
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 import asyncio
 import json
+import math
 import os
 import shutil
 import time
-
-if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
-else:
-    from config import Config
-
 from datetime import datetime
-from hachoir.parser import createParser
-from hachoir.metadata import extractMetadata
-from pyrogram.types import InputMediaPhoto
 
-from translation import Translation
-from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from plugins.config import Config
+from plugins.translation import Translation
+from plugins.custom_thumbnail import *
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+from pyrogram.types import InputMediaPhoto
+from functions.display_progress import progress_for_pyrogram, humanbytes
+from plugins.database.database import db
 from PIL import Image
+from functions.ran_text import random_char
 
 
 async def youtube_dl_call_back(bot, update):
