@@ -29,7 +29,7 @@ from functions.ran_text import random_char
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
-    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
+    tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".jpg"
 
